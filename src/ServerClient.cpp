@@ -43,6 +43,7 @@ bool ServerClient::readSize(std::size_t size, char *data, std::size_t& received)
   return (false);
 }
 
+// Yup, this is an adaptation of the SFML-NETWORK package
 bool ServerClient::readPacket(Packet& packet)
 {
   bool ret = false;
