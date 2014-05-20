@@ -15,9 +15,9 @@ public:
   ~Client();
 
 public:
-  bool sendSize(const void* data, std::size_t size);
+  bool sendSize(const void* data, unsigned int size);
   bool sendPacket(const Packet& packet);
-  bool readSize(std::size_t size, void* buffer, std::size_t& recived);
+  bool readSize(unsigned int size, void* buffer, unsigned int& recived);
   bool readPacket(Packet& packet);
   void init();
   void disconnect();
@@ -35,7 +35,7 @@ private:
   {
     WaitingPacket();
     uint32_t		size;
-    std::size_t		received;
+    unsigned int       	received;
     std::vector<char>	data;
   };
   WaitingPacket _waitingPacket;

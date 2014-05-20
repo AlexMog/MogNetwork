@@ -17,7 +17,7 @@ public:
   int getSocket() const;
   bool sendPacket(const Packet& packet);
   bool sendSize(const void* data, unsigned int size);
-  bool readSize(std::size_t size, char *buffer, std::size_t&);
+  bool readSize(unsigned int size, char *buffer, unsigned int&);
   bool readPacket(Packet& packet);
   void disconnect();
 
@@ -27,8 +27,8 @@ private:
   struct WaitingPacket
   {
     WaitingPacket();
-    std::size_t size;
-    std::size_t received;
+    unsigned int size;
+    unsigned int received;
     std::vector<char> data;
   };
   WaitingPacket _waitingPacket;

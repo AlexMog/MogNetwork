@@ -84,7 +84,7 @@ void Client::start()
     }
 }
 
-bool Client::readSize(std::size_t size, void* data, std::size_t& received)
+bool Client::readSize(unsigned int size, void* data, unsigned int& received)
 {
   int n = 0;
 
@@ -97,7 +97,7 @@ bool Client::readSize(std::size_t size, void* data, std::size_t& received)
 bool Client::readPacket(Packet& packet)
 {
   uint32_t size = 0;
-  std::size_t received = 0;
+  unsigned int received = 0;
   char buffer[1024];
   bool ret = false;
 
@@ -119,7 +119,7 @@ bool Client::readPacket(Packet& packet)
   // Reception des data du packet
   while (_waitingPacket.data.size() < size)
     {
-      std::size_t toGet = std::min(static_cast<std::size_t>(size - _waitingPacket.data.size()), sizeof(buffer));
+      unsigned int toGet = std::min(static_cast<long unsigned int>(size - _waitingPacket.data.size()), sizeof(buffer));
       ret = readSize(toGet, buffer, received);
       if (ret)
         return (ret);
@@ -146,7 +146,7 @@ void Client::interpretePacket(Packet& packet)
     _serverListener->onOrder(packet);
 }
 
-bool Client::sendSize(const void* data, std::size_t size)
+bool Client::sendSize(const void* data, unsigned int size)
 {
   int sent = 0;
   int toSend = static_cast<int>(size);
@@ -162,7 +162,7 @@ bool Client::sendSize(const void* data, std::size_t size)
 
 bool Client::sendPacket(const Packet& packet)
 {
-  std::size_t size = 0;
+  unsigned int size = 0;
   size = packet.getDataSize();
   const void* data = packet.getData();
 

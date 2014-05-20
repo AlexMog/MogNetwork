@@ -5,7 +5,7 @@
 // Login   <alexmog@epitech.net>
 // 
 // Started on  Fri Apr  4 21:38:40 2014 Moghrabi Alexandre
-// Last update Mon May 19 19:26:07 2014 Moghrabi Alexandre
+// Last update Tue May 20 13:04:07 2014 Moghrabi Alexandre
 //
 
 #ifndef PACKET_HH_
@@ -48,11 +48,11 @@ public:
   unsigned int getDataSize() const;
 
 private:
-  bool verifySize(std::size_t size);
+  bool verifySize(unsigned int size);
 
 private:
   std::vector<char>			_data;
-  std::size_t				_readerPos;
+  unsigned int				_readerPos;
 };
 
 #endif // !PACKET_HH_

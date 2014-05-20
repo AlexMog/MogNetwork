@@ -34,7 +34,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 		mkdir -p bin
-		$(CC) --shared -o $(BINDIR)$(NAME) $(OBJ) -pthread 
+		$(CC) --shared -o $(BINDIR)$(NAME) $(OBJ) -pthread
 
 clean:
 		$(RM) $(OBJ)
@@ -44,7 +44,7 @@ fclean:		clean
 
 install:
 		$(CP) $(BINDIR)$(NAME) $(LIBDIR)
-		mkdir $(INCDIR)$(LIBNAME)
+		mkdir -p $(INCDIR)$(LIBNAME)
 		$(CP) ./include/* $(INCDIR)$(LIBNAME)/
 
 uninstall:

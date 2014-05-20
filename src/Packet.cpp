@@ -5,7 +5,7 @@
 // Login   <alexmog@epitech.net>
 // 
 // Started on  Fri Apr  4 21:48:49 2014 Moghrabi Alexandre
-// Last update Mon May 19 19:26:20 2014 Moghrabi Alexandre
+// Last update Tue May 20 13:03:32 2014 Moghrabi Alexandre
 //
 
 #include <string.h>
@@ -17,7 +17,7 @@ Packet::~Packet() {}
 
 void Packet::push(const void* data, unsigned int size)
 {
-  std::size_t actualSize;
+  unsigned int actualSize;
 
   if (data && (size > 0))
     {
@@ -136,7 +136,7 @@ Packet& Packet::operator<<(const std::string& data)
   return (*this);
 }
 
-bool Packet::verifySize(std::size_t size)
+bool Packet::verifySize(unsigned int size)
 {
   return (_readerPos + size <= _data.size());
 }

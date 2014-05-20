@@ -33,7 +33,7 @@ void ServerClient::disconnect()
     }
 }
 
-bool ServerClient::readSize(std::size_t size, char *data, std::size_t& received)
+bool ServerClient::readSize(unsigned int size, char *data, unsigned int& received)
 {
   int n = 0;
 
@@ -48,7 +48,7 @@ bool ServerClient::readPacket(Packet& packet)
 {
   bool ret = false;
   uint32_t size = 0;
-  std::size_t received = 0;
+  unsigned int received = 0;
   char buffer[1024];
 
   packet.clear();
@@ -68,7 +68,7 @@ bool ServerClient::readPacket(Packet& packet)
   // Réception des data du packet
   while (_waitingPacket.data.size() < size)
     {
-      std::size_t toGet = std::min(static_cast<std::size_t>(size - _waitingPacket.data.size()), sizeof(buffer));
+      unsigned int toGet = std::min(static_cast<long unsigned int>(size - _waitingPacket.data.size()), sizeof(buffer));
       ret = readSize(toGet, buffer, received);
       if (ret)
 	return (ret);
