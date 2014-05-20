@@ -5,7 +5,7 @@
 // Login   <alexmog@epitech.net>
 // 
 // Started on  Fri Apr  4 17:52:24 2014 Moghrabi Alexandre
-// Last update Sun Apr  6 18:00:01 2014 Moghrabi Alexandre
+// Last update Tue May 20 13:25:14 2014 Moghrabi Alexandre
 //
 
 #ifndef ISERVERLISTENER_HH_
@@ -20,6 +20,7 @@ public:
 
 public:
   virtual void onOrder(Packet& packet) = 0;
+  virtual void onDisconnect() = 0;
   
 };
 

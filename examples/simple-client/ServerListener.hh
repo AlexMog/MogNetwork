@@ -5,7 +5,7 @@
 // Login   <alexmog@epitech.net>
 // 
 // Started on  Mon May 19 22:28:45 2014 Moghrabi Alexandre
-// Last update Mon May 19 22:30:04 2014 Moghrabi Alexandre
+// Last update Tue May 20 13:25:56 2014 Moghrabi Alexandre
 //
 
 #ifndef SERVERLISTENER_HH_
@@ -21,6 +21,7 @@ public:
 
 public:
   void onOrder(Packet& packet);
+  void onDisconnect();
 };
 
 #endif /* !SERVERLISTENER_HH_ */

@@ -1,3 +1,13 @@
+//
+// Client.cpp for Mog-Network in 
+// 
+// Made by Moghrabi Alexandre
+// Login   <alexmog@epitech.net>
+// 
+// Started on  Tue May 20 13:22:00 2014 Moghrabi Alexandre
+// Last update Tue May 20 13:24:40 2014 Moghrabi Alexandre
+//
+
 #include <iostream>
 #include <string>
 #include <string.h>
@@ -30,25 +40,18 @@ void Client::init()
   memset(&sin, 0, sizeof(sockaddr_in));
   struct hostent *hostinfo;
 
-  std::cout << "Création de la socket..." << std::endl;
   if (_socket == -1)
     throw ClientException("Socket: ");
 
-  std::cout << "Vérification du host..." << std::endl;
   hostinfo = gethostbyname(_ip.c_str());
   if (hostinfo == NULL)
-    {
-      std::cout << "Unknow host " << _ip << std::endl;
-      throw ClientException("Gethostbyname: ");
-    }
+    throw ClientException("Gethostbyname: ");
 
   sin.sin_addr = *(struct in_addr *)hostinfo->h_addr;
   sin.sin_port = htons(_port);
   sin.sin_family = AF_INET;
-  std::cout << "Connection au host..." << std::endl;
   if (connect(_socket, (struct sockaddr *)&sin, sizeof(struct sockaddr)) == -1)
     throw ClientException("Connect: ");
-  std::cout << "Initialisation terminée." << std::endl;
 }
 
 void Client::disconnect()
@@ -76,7 +79,8 @@ void Client::start()
 	  Packet packet;
 	  if (readPacket(packet))
 	    {
-	      std::cout << "Le serveur a coupé la connection." << std::endl;
+	      if (_serverListener != NULL)
+		_serverListener->onDisconnect();
 	      break;
 	    }
 	  interpretePacket(packet);
@@ -172,7 +176,6 @@ bool Client::sendPacket(const Packet& packet)
   if (size > 0)
     memcpy(&toSend[0] + sizeof(packetSize), data, size);
   
-  std::cout << "SENDED!" << std::endl;
   return (sendSize(&toSend[0], toSend.size()));
 }
 
